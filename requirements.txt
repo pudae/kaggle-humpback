@@ -1,0 +1,12 @@
+tqdm==4.28.1
+torch==1.0.0
+torchvision==0.2.1
+tensorboardX==1.5
+pandas==0.23.4
+scipy==1.1.0
+pretrainedmodels==0.7.4
+numpy==1.15.4
+PyYAML==3.13
+easydict==1.9
+albumentations==0.1.8
+imgaug==0.2.7

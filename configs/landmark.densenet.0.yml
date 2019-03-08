@@ -1,0 +1,41 @@
+data:
+  name: 'LandmarkDataset'
+  dir: 'data'
+  params:
+    idx_fold: 0
+    num_fold: 5
+
+task:
+  name: 'LandmarkDetector'
+ 
+model:
+  name: 'densenet121'
+  params:
+    feature_size: 9
+
+train:
+  dir: './train_logs/landmark.fold.0'
+  batch_size: 16
+  log_step: 2
+  save_checkpoint_epoch: 50
+  num_epochs: 3500
+
+loss:
+  name: 'smooth_l1_loss'
+
+optimizer:
+  name: 'adam'
+  params:
+    lr: 0.0005
+    weight_decay: 0.0005
+
+scheduler:
+  name: 'multi_step'
+  params:
+    milestones: [1500, 2500, 3000]
+
+transform:
+  name: 'landmark_transform'
+  num_preprocessor: 4
+  params:
+    size: 288

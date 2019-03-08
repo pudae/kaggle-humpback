@@ -1,0 +1,51 @@
+data:
+  name: 'IdentificationDataset'
+  dir: 'data'
+
+task:
+  name: 'Identifier'
+
+model:
+  name: 'densenet121'
+  params:
+    num_outputs: 10010
+
+    feature_size: 10 
+    drop_rate: 0.5
+    pretrained: True
+
+
+train:
+  dir: './train_logs/densenet121.1st'
+  batch_size: 32
+  log_step: 2
+  save_checkpoint_epoch: 2
+  num_epochs: 500
+
+eval:
+  cal_metric_once: True
+  batch_size: 32
+
+loss:
+  name: 'cross_entropy'
+
+optimizer:
+  name: 'adam'
+  params:
+    lr: 0.0005
+    weight_decay: 0.0005
+
+scheduler:
+  name: 'multi_step'
+  params:
+    milestones: [250, 350]
+    gamma: 0.5
+
+transform:
+  name: 'align_transform'
+  num_preprocessor: 4
+  params:
+    size: 320
+    align: True
+    align_p: 0.5
+
